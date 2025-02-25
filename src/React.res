@@ -5,7 +5,6 @@ type element = Jsx.element
 external float: float => element = "%identity"
 external int: int => element = "%identity"
 external string: string => element = "%identity"
-
 external array: array<element> => element = "%identity"
 
 type componentLike<'props, 'return> = Jsx.componentLike<'props, 'return>
@@ -341,7 +340,7 @@ external useImperativeHandle7: (
 @module("react") external useDeferredValue: 'value => 'value = "useDeferredValue"
 
 @module("react")
-external useTransition: unit => (bool, (. unit => unit) => unit) = "useTransition"
+external useTransition: unit => (bool, (unit => unit) => unit) = "useTransition"
 
 @module("react")
 external useInsertionEffectOnEveryRender: (@uncurry (unit => option<unit => unit>)) => unit =
@@ -382,34 +381,54 @@ external useInsertionEffect7: (
 
 @module("react")
 external useSyncExternalStore: (
-  ~subscribe: @uncurry ((unit => unit) => (. unit) => unit),
+  ~subscribe: @uncurry ((unit => unit) => unit => unit),
   ~getSnapshot: @uncurry (unit => 'state),
 ) => 'state = "useSyncExternalStore"
 
 @module("react")
 external useSyncExternalStoreWithServerSnapshot: (
-  ~subscribe: @uncurry ((unit => unit) => (. unit) => unit),
+  ~subscribe: @uncurry ((unit => unit) => unit => unit),
   ~getSnapshot: @uncurry (unit => 'state),
   ~getServerSnapshot: @uncurry (unit => 'state),
 ) => 'state = "useSyncExternalStore"
 
+/**
+ useOptimistic is a React Hook that lets you optimistically update the UI.
+ https://react.dev/reference/react/useOptimistic
+ */
+@module("react")
+external useOptimistic: 't => ('t, 't => unit) = "useOptimistic"
+
+/**
+ use is a React API that lets you read the value of a resource like a Promise or context.
+ http://react.dev/reference/react/use
+ */
+@module("react")
+external use: promise<'t> => 't = "use"
+
+/**
+ use is a React API that lets you read the value of a resource like a Promise or context.
+ http://react.dev/reference/react/use
+ */
+@module("react")
+external useWithContext: Context.t<'props> => 't = "use"
+
+
 module Uncurried = {
   @module("react")
-  external useState: (@uncurry (unit => 'state)) => ('state, (. 'state => 'state) => unit) =
+  external useState: (@uncurry (unit => 'state)) => ('state, ('state => 'state) => unit) =
     "useState"
 
   @module("react")
-  external useReducer: (
-    @uncurry ('state, 'action) => 'state,
-    'state,
-  ) => ('state, (. 'action) => unit) = "useReducer"
+  external useReducer: (@uncurry ('state, 'action) => 'state, 'state) => ('state, 'action => unit) =
+    "useReducer"
 
   @module("react")
   external useReducerWithMapState: (
     @uncurry ('state, 'action) => 'state,
     'initialState,
     @uncurry ('initialState => 'state),
-  ) => ('state, (. 'action) => unit) = "useReducer"
+  ) => ('state, 'action => unit) = "useReducer"
 
   @module("react")
   external useCallback: ('f, 'deps) => 'f = "useCallback"
