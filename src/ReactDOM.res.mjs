@@ -9,14 +9,8 @@ let Client = {
 
 let Ref = {};
 
-let Props = {};
-
-let Style;
-
 export {
   Client,
   Ref,
-  Props,
-  Style,
 }
 /* No side effect */

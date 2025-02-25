@@ -2,8 +2,6 @@
 
 import * as React from "react";
 
-let Ref = {};
-
 let Children = {};
 
 let Context = {};
@@ -23,7 +21,6 @@ function lazy_(load) {
 let Uncurried = {};
 
 export {
-  Ref,
   Children,
   Context,
   Fragment,
