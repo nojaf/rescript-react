@@ -19,3 +19,5 @@ src/legacy/*.bs.js
 
 # React
 !/src/react/*.js
+# ReScript
+lib/

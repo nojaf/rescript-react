@@ -10,6 +10,12 @@
 > - :house: [Internal]
 > - :nail_care: [Polish]
 
+## 0.15.0-alpha.1
+
+#### :boom: [Breaking Change]
+
+- Upgrade to ReScript 12.0.0
+
 ## 0.14.0
 
 #### :nail_care: Polish
@@ -149,7 +155,6 @@ No changes compared to rc.3.
 - Removed the deprecation attribute from apis of the new jsx transform (introduced in React v17).
 
 - New version requirements:
-
   - ReScript compiler V10.1+
   - ReactJS v18.2.0+
 
@@ -175,14 +180,12 @@ For history on previous evolution of the code, check out the original [reason-re
 - **IMPORTANT:** Currently, old third-party packages that are still dependent on `reason-react` will not mix with other `@rescript/react` based code due to a build system problem. Which means that every third-party dependency needs to be upgraded to `@rescript/react` first to make it compatible. See [this forum discussion](https://forum.rescript-lang.org/t/discussion-reason-react-rescript-react-migration-path/1086) for more details.
 
 - Removed legacy modules ("record api"):
-
   - `ReasonReactCompat`
   - `ReactDOMServerRe`
   - `ReactEventRe`
   - `ReasonReactOptimizedCreateClass`
 
 - Renamed existing modules:
-
   - `ReasonReactErrorBoundary` -> `RescriptReactErrorBoundary`
   - `ReasonReactRouter` -> `RescriptReactRouter`
   - (Note: Usually the two only valid styles would be `ReScript` or `rescript`, the latter being the version for technical writing. We are using `Rescript` here, since it is essentially the capitalized version of `rescript`)
